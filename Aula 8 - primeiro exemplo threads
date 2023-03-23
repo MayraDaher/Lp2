@@ -1,0 +1,38 @@
+/******************************************************************************
+
+*******************************************************************************/
+#include <stdio.h>
+#include <pthread.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int varGlobal;
+
+void* funcao_thread(void* param){
+    int varLocal = 99;
+    printf("\nDentro da função_thread\nvarGlobal = %d\n", varGlobal);
+    printf("varLocal = %d\n", varLocal);
+    sleep(5);
+    varGlobal++;
+    varLocal++;
+    printf("Saindo da função_thread\nvarGlobal = %d e varLocal = %d\n", varGlobal, varLocal);
+    
+}
+
+
+
+int main()
+{
+    varGlobal = 1000;  
+    pthread_t thread1, thread2;
+    
+    printf("Dentro da função main\n");
+    printf("Vou criar 2 threads\n\n");
+    pthread_create(&thread1, NULL, funcao_thread, NULL);
+    pthread_create(&thread2, NULL, funcao_thread, NULL);
+    
+    sleep(10);
+    
+    printf("\nFechando função main\nvarGlobal = %d\n", varGlobal);
+    return 0;
+}

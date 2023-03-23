@@ -1,0 +1,1 @@
+Esse repositório é dedicado à resolução de exercícios da disciplina de programação concorrente em C
